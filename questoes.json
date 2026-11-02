@@ -1,0 +1,212 @@
+{
+    "0001": {
+        "pergunta": "Qual é a maneira correta de higienizar as mãos antes de manipular alimentos?",
+        "opcoes": [
+            {
+                "texto": "Enxaguar as mãos somente com água.",
+                "correta": false
+            },
+            {
+                "texto": "Lavar as mãos com água e sabão, esfregando todas as partes, e secá-las adequadamente.",
+                "correta": true
+            },
+            {
+                "texto": "Limpar as mãos em um pano de prato limpo.",
+                "correta": false
+            },
+            {
+                "texto": "Utilizar luvas sem lavar as mãos.",
+                "correta": false
+            }
+        ]
+    },
+    "0002": {
+        "pergunta": "O que é contaminação cruzada na manipulação de alimentos?",
+        "opcoes": [
+            {
+                "texto": "O processo de congelar alimentos para conservá-los.",
+                "correta": false
+            },
+            {
+                "texto": "A mistura de ingredientes para preparar uma receita.",
+                "correta": false
+            },
+            {
+                "texto": "A transferência de microrganismos ou contaminantes de um alimento, superfície ou utensílio para outro.",
+                "correta": true
+            },
+            {
+                "texto": "O aquecimento de alimentos antes de servi-los.",
+                "correta": false
+            }
+        ]
+    },
+    "0003": {
+        "pergunta": "Qual prática ajuda a evitar a multiplicação de microrganismos em alimentos que precisam de refrigeração?",
+        "opcoes": [
+            {
+                "texto": "Deixar os alimentos fora da geladeira durante todo o expediente.",
+                "correta": false
+            },
+            {
+                "texto": "Armazenar os alimentos refrigerados em temperatura adequada, conforme o tipo de produto e a legislação aplicável.",
+                "correta": true
+            },
+            {
+                "texto": "Colocar alimentos quentes diretamente sobre outros alimentos refrigerados, sem controle de temperatura.",
+                "correta": false
+            },
+            {
+                "texto": "Abrir a geladeira frequentemente para verificar os alimentos.",
+                "correta": false
+            }
+        ]
+    },
+    "0004": {
+        "pergunta": "Qual atitude é adequada para um manipulador de alimentos durante o trabalho?",
+        "opcoes": [
+            {
+                "texto": "Utilizar anéis e pulseiras, desde que sejam pequenos.",
+                "correta": false
+            },
+            {
+                "texto": "Trabalhar com unhas compridas, desde que estejam pintadas.",
+                "correta": false
+            },
+            {
+                "texto": "Utilizar roupas limpas, manter as unhas curtas e evitar adornos durante a manipulação.",
+                "correta": true
+            },
+            {
+                "texto": "Utilizar o uniforme de trabalho em atividades externas sem cuidados adicionais.",
+                "correta": false
+            }
+        ]
+    },
+    "0005": {
+        "pergunta": "Qual procedimento é adequado para higienizar frutas, verduras e legumes consumidos crus?",
+        "opcoes": [
+            {
+                "texto": "Apenas remover a sujeira visível com um pano.",
+                "correta": false
+            },
+            {
+                "texto": "Lavar e, quando indicado, sanitizar com produto regularizado para essa finalidade, seguindo as instruções do fabricante.",
+                "correta": true
+            },
+            {
+                "texto": "Deixar os alimentos de molho em qualquer produto de limpeza doméstica.",
+                "correta": false
+            },
+            {
+                "texto": "Utilizar somente água quente, independentemente do alimento.",
+                "correta": false
+            }
+        ]
+    },
+    "0006": {
+        "pergunta": "Como os alimentos crus devem ser armazenados para reduzir o risco de contaminação dos alimentos prontos para consumo?",
+        "opcoes": [
+            {
+                "texto": "Na mesma prateleira dos alimentos prontos, sem separação.",
+                "correta": false
+            },
+            {
+                "texto": "Acima dos alimentos prontos, para facilitar o acesso.",
+                "correta": false
+            },
+            {
+                "texto": "Separados dos alimentos prontos para consumo, em recipientes adequados e posicionados para evitar contaminação.",
+                "correta": true
+            },
+            {
+                "texto": "Sempre fora da geladeira, desde que estejam embalados.",
+                "correta": false
+            }
+        ]
+    },
+    "0007": {
+        "pergunta": "Qual afirmação sobre o uso de luvas na manipulação de alimentos está correta?",
+        "opcoes": [
+            {
+                "texto": "O uso de luvas elimina a necessidade de higienizar as mãos.",
+                "correta": false
+            },
+            {
+                "texto": "As mesmas luvas podem ser usadas para manipular alimentos crus e prontos para consumo sem troca.",
+                "correta": false
+            },
+            {
+                "texto": "As luvas substituem todos os cuidados de higiene pessoal.",
+                "correta": false
+            },
+            {
+                "texto": "As luvas devem ser utilizadas corretamente e trocadas quando necessário, sem substituir a higienização das mãos.",
+                "correta": true
+            }
+        ]
+    },
+    "0008": {
+        "pergunta": "O que deve ser feito ao identificar um alimento com prazo de validade vencido?",
+        "opcoes": [
+            {
+                "texto": "Utilizá-lo imediatamente para evitar desperdício.",
+                "correta": false
+            },
+            {
+                "texto": "Misturá-lo com alimentos dentro do prazo de validade.",
+                "correta": false
+            },
+            {
+                "texto": "Separá-lo dos alimentos próprios para consumo e impedir sua utilização.",
+                "correta": true
+            },
+            {
+                "texto": "Retirar a etiqueta de validade e armazená-lo novamente.",
+                "correta": false
+            }
+        ]
+    },
+    "0009": {
+        "pergunta": "Qual é a diferença entre limpeza e sanitização?",
+        "opcoes": [
+            {
+                "texto": "São procedimentos iguais, com a mesma finalidade.",
+                "correta": false
+            },
+            {
+                "texto": "A limpeza remove sujidades; a sanitização reduz os microrganismos a níveis aceitáveis, quando realizada corretamente.",
+                "correta": true
+            },
+            {
+                "texto": "A limpeza elimina necessariamente todos os microrganismos.",
+                "correta": false
+            },
+            {
+                "texto": "A sanitização consiste apenas em retirar restos de alimentos das superfícies.",
+                "correta": false
+            }
+        ]
+    },
+    "0010": {
+        "pergunta": "O que um manipulador de alimentos deve fazer quando apresentar sintomas como vômito ou diarreia?",
+        "opcoes": [
+            {
+                "texto": "Continuar trabalhando normalmente, desde que utilize luvas.",
+                "correta": false
+            },
+            {
+                "texto": "Tomar um medicamento e continuar manipulando alimentos.",
+                "correta": false
+            },
+            {
+                "texto": "Evitar comunicar o problema para não prejudicar o funcionamento do estabelecimento.",
+                "correta": false
+            },
+            {
+                "texto": "Comunicar imediatamente o responsável e seguir as medidas de afastamento ou restrição das atividades e de avaliação de saúde aplicáveis.",
+                "correta": true
+            }
+        ]
+    }
+}

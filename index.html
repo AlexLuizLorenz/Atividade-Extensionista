@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Questionário - Boas Práticas de Alimentos</title>
+
+    <!-- Importa o arquivo de estilos CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Importa o JavaScript após a leitura do HTML -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <main class="container">
+
+        <header class="cabecalho">
+            <h1>Boas Práticas de Manipulação de Alimentos</h1>
+
+            <p>
+                Responda às questões e teste seus conhecimentos.
+            </p>
+        </header>
+
+        <!-- Painel com os contadores -->
+        <section class="placar" aria-label="Resultado parcial">
+
+            <div class="contador">
+                <span>Questão</span>
+                <strong id="numero-questao">0/0</strong>
+            </div>
+
+            <div class="contador acertos">
+                <span>Acertos</span>
+                <strong id="contador-acertos">0</strong>
+            </div>
+
+            <div class="contador erros">
+                <span>Erros</span>
+                <strong id="contador-erros">0</strong>
+            </div>
+
+        </section>
+
+        <!-- Barra de progresso -->
+        <div class="progresso">
+            <div id="barra-progresso"></div>
+        </div>
+
+        <!-- Área principal do questionário -->
+        <section id="area-questionario" class="cartao">
+
+            <h2 id="enunciado">Carregando questões...</h2>
+
+            <!-- As alternativas serão criadas pelo JavaScript -->
+            <div id="alternativas" class="alternativas"></div>
+
+            <!-- Mensagem de resposta certa ou errada -->
+            <div
+                id="feedback"
+                class="feedback"
+                role="status"
+                aria-live="polite"
+            ></div>
+
+            <!-- Botões de interação -->
+            <div class="acoes">
+
+                <button id="botao-confirmar" disabled>
+                    Confirmar resposta
+                </button>
+
+                <button id="botao-proxima" hidden>
+                    Próxima questão
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Resultado final, inicialmente oculto -->
+        <section id="resultado-final" class="cartao" hidden>
+
+            <h2>Questionário concluído!</h2>
+
+            <p id="mensagem-final"></p>
+
+            <div class="resultado-detalhes">
+                <p>
+                    Total de questões:
+                    <strong id="total-final">0</strong>
+                </p>
+
+                <p>
+                    Acertos:
+                    <strong id="acertos-final">0</strong>
+                </p>
+
+                <p>
+                    Erros:
+                    <strong id="erros-final">0</strong>
+                </p>
+
+                <p>
+                    Aproveitamento:
+                    <strong id="aproveitamento-final">0%</strong>
+                </p>
+            </div>
+
+            <button id="botao-reiniciar">
+                Refazer questionário
+            </button>
+
+        </section>
+
+        <!-- Mensagem de erro caso não seja possível carregar o JSON -->
+        <p id="mensagem-erro" class="mensagem-erro" hidden></p>
+
+        <footer>
+            <p>Questionário educativo sobre segurança dos alimentos.</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>

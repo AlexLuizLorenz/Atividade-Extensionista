@@ -1,0 +1,365 @@
+
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+   ============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f0f4f8;
+    color: #263238;
+    min-height: 100vh;
+    padding: 30px 16px;
+    line-height: 1.5;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* ==============================
+   CABEÇALHO
+   ============================== */
+
+.cabecalho {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.cabecalho h1 {
+    color: #14532d;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.cabecalho p {
+    color: #5f6b65;
+    font-size: 16px;
+}
+
+/* ==============================
+   PLACAR DE ACERTOS E ERROS
+   ============================== */
+
+.placar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.contador {
+    background: white;
+    padding: 16px 10px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.contador span {
+    display: block;
+    color: #65716b;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.contador strong {
+    font-size: 24px;
+    color: #263238;
+}
+
+.contador.acertos strong {
+    color: #15803d;
+}
+
+.contador.erros strong {
+    color: #dc2626;
+}
+
+/* ==============================
+   BARRA DE PROGRESSO
+   ============================== */
+
+.progresso {
+    width: 100%;
+    height: 9px;
+    background: #dce4df;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 22px;
+}
+
+#barra-progresso {
+    width: 0%;
+    height: 100%;
+    background: #16a34a;
+    transition: width 0.3s ease;
+}
+
+/* ==============================
+   CARTÃO PRINCIPAL
+   ============================== */
+
+.cartao {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+
+.cartao h2 {
+    font-size: 21px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    color: #263238;
+}
+
+/* ==============================
+   ALTERNATIVAS
+   ============================== */
+
+.alternativas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.alternativa {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #dce4df;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #263238;
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.alternativa:hover:not(:disabled) {
+    background: #f0fdf4;
+    border-color: #16a34a;
+}
+
+.alternativa:focus-visible,
+button:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 3px;
+}
+
+.alternativa.selecionada {
+    border-color: #15803d;
+    background: #f0fdf4;
+}
+
+.alternativa.correta {
+    border-color: #15803d;
+    background: #dcfce7;
+}
+
+.alternativa.incorreta {
+    border-color: #dc2626;
+    background: #fee2e2;
+}
+
+.alternativa:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+.letra-alternativa {
+    display: inline-flex;
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    background: #e8eee9;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* ==============================
+   FEEDBACK DA RESPOSTA
+   ============================== */
+
+.feedback {
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.feedback:empty {
+    display: none;
+}
+
+.feedback.certa {
+    color: #166534;
+    background: #dcfce7;
+}
+
+.feedback.errada {
+    color: #991b1b;
+    background: #fee2e2;
+}
+
+/* ==============================
+   BOTÕES
+   ============================== */
+
+.acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+button {
+    font-family: inherit;
+}
+
+.acoes button,
+#botao-reiniciar {
+    padding: 13px 20px;
+    border: none;
+    border-radius: 9px;
+    background: #15803d;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.acoes button:hover:not(:disabled),
+#botao-reiniciar:hover {
+    background: #166534;
+}
+
+.acoes button:disabled {
+    background: #aab8ae;
+    cursor: not-allowed;
+}
+
+#botao-proxima {
+    background: #1d4ed8;
+}
+
+#botao-proxima:hover {
+    background: #1e40af;
+}
+
+/* ==============================
+   RESULTADO FINAL
+   ============================== */
+
+.resultado-detalhes {
+    background: #f0f4f8;
+    padding: 18px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.resultado-detalhes p {
+    margin: 8px 0;
+}
+
+#mensagem-final {
+    font-size: 17px;
+}
+
+#botao-reiniciar {
+    width: 100%;
+}
+
+/* ==============================
+   MENSAGEM DE ERRO
+   ============================== */
+
+.mensagem-erro {
+    margin-top: 20px;
+    padding: 16px;
+    color: #991b1b;
+    background: #fee2e2;
+    border-radius: 10px;
+}
+
+/* ==============================
+   RODAPÉ
+   ============================== */
+
+footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #65716b;
+    font-size: 13px;
+}
+
+/* ==============================
+   ELEMENTOS OCULTOS
+   ============================== */
+
+[hidden] {
+    display: none !important;
+}
+
+/* ==============================
+   AJUSTES PARA CELULARES
+   ============================== */
+
+@media (max-width: 600px) {
+    body {
+        padding: 20px 12px;
+    }
+
+    .cabecalho h1 {
+        font-size: 24px;
+    }
+
+    .cartao {
+        padding: 20px 16px;
+    }
+
+    .cartao h2 {
+        font-size: 18px;
+    }
+
+    .contador {
+        padding: 12px 6px;
+    }
+
+    .contador span {
+        font-size: 12px;
+    }
+
+    .contador strong {
+        font-size: 21px;
+    }
+
+    .alternativa {
+        padding: 13px 10px;
+        font-size: 14px;
+    }
+
+    .acoes {
+        flex-direction: column;
+    }
+
+    .acoes button {
+        width: 100%;
+    }
+}
