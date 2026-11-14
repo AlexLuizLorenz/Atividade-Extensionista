@@ -1,4 +1,5 @@
 
+
 "use strict";
 
 // ========================================
@@ -20,11 +21,24 @@ const botaoReiniciar = document.getElementById("botao-reiniciar");
 const areaQuestionario = document.getElementById("area-questionario");
 const resultadoFinal = document.getElementById("resultado-final");
 const mensagemFinal = document.getElementById("mensagem-final");
+
 const totalFinal = document.getElementById("total-final");
 const acertosFinal = document.getElementById("acertos-final");
 const errosFinal = document.getElementById("erros-final");
 const aproveitamentoFinal = document.getElementById("aproveitamento-final");
+
 const mensagemErro = document.getElementById("mensagem-erro");
+
+// Elementos da identificação do participante.
+const identificacao = document.getElementById("identificacao");
+const formularioIdentificacao = document.getElementById("form-identificacao");
+const campoNome = document.getElementById("nome-participante");
+const nomeFinal = document.getElementById("nome-final");
+
+// Elementos que aparecem somente após a identificação.
+const placar = document.querySelector(".placar");
+const progressoVisual = document.querySelector(".progresso");
+
 
 // ========================================
 // ESTADO DO QUESTIONÁRIO
@@ -32,6 +46,9 @@ const mensagemErro = document.getElementById("mensagem-erro");
 
 // As perguntas serão carregadas do arquivo JSON.
 let questoes = [];
+
+// Nome informado pelo participante.
+let nomeParticipante = "";
 
 // Índice da pergunta que está sendo exibida.
 let indiceAtual = 0;
@@ -46,20 +63,25 @@ let alternativaSelecionada = null;
 // Indica se a pergunta atual já foi respondida.
 let perguntaRespondida = false;
 
+
 // ========================================
 // CARREGAMENTO DO ARQUIVO JSON
 // ========================================
 
 async function carregarQuestoes() {
+
     try {
+
         // Busca o arquivo JSON na raiz do projeto.
         const resposta = await fetch("questoes.json");
 
         // Verifica se o arquivo foi encontrado.
         if (!resposta.ok) {
+
             throw new Error(
                 "Não foi possível carregar o arquivo questoes.json."
             );
+
         }
 
         // Converte o conteúdo JSON em um objeto JavaScript.
@@ -72,12 +94,15 @@ async function carregarQuestoes() {
 
         // Verifica se existem perguntas.
         if (questoes.length === 0) {
+
             throw new Error("O arquivo JSON não contém perguntas.");
+
         }
 
         // Confere se cada pergunta possui quatro alternativas
         // e exatamente uma resposta correta.
         const estruturaValida = questoes.every(questao =>
+
             typeof questao.pergunta === "string" &&
             Array.isArray(questao.opcoes) &&
             questao.opcoes.length === 4 &&
@@ -86,22 +111,28 @@ async function carregarQuestoes() {
                 typeof opcao.correta === "boolean"
             ) &&
             questao.opcoes.filter(opcao => opcao.correta).length === 1
+
         );
 
         if (!estruturaValida) {
+
             throw new Error(
                 "Uma ou mais perguntas possuem estrutura inválida. " +
                 "Cada pergunta deve ter quatro alternativas e " +
                 "exatamente uma resposta correta."
             );
+
         }
 
-        // Exibe a primeira pergunta.
-        mostrarQuestao();
+        // Não inicia automaticamente.
+        // Aguarda o participante informar seu nome.
 
     } catch (erro) {
+
         // Apresenta uma mensagem caso ocorra algum problema.
         areaQuestionario.hidden = true;
+        identificacao.hidden = true;
+
         mensagemErro.hidden = false;
 
         mensagemErro.textContent =
@@ -110,14 +141,52 @@ async function carregarQuestoes() {
             "por meio de um servidor local, como o Live Server.";
 
         console.error("Erro ao carregar o questionário:", erro);
+
     }
+
 }
+
+
+// ========================================
+// IDENTIFICAÇÃO DO PARTICIPANTE
+// ========================================
+
+formularioIdentificacao.addEventListener("submit", function(event) {
+
+    // Impede o envio tradicional do formulário.
+    event.preventDefault();
+
+    // Recupera o nome informado.
+    nomeParticipante = campoNome.value.trim();
+
+    // Impede iniciar sem informar o nome.
+    if (nomeParticipante === "") {
+
+        campoNome.focus();
+        return;
+
+    }
+
+    // Oculta a identificação.
+    identificacao.hidden = true;
+
+    // Exibe os elementos do questionário.
+    placar.hidden = false;
+    progressoVisual.hidden = false;
+    areaQuestionario.hidden = false;
+
+    // Inicia a primeira pergunta.
+    mostrarQuestao();
+
+});
+
 
 // ========================================
 // EXIBIR A PERGUNTA ATUAL
 // ========================================
 
 function mostrarQuestao() {
+
     // Recupera a pergunta atual.
     const questao = questoes[indiceAtual];
 
@@ -149,6 +218,7 @@ function mostrarQuestao() {
 
     // Cria as quatro alternativas.
     questao.opcoes.forEach((opcao, indice) => {
+
         // Cria o botão da alternativa.
         const botao = document.createElement("button");
 
@@ -171,27 +241,35 @@ function mostrarQuestao() {
 
         // Registra a seleção feita pelo usuário.
         botao.addEventListener("click", () => {
+
             selecionarAlternativa(indice);
+
         });
 
         // Adiciona o botão à página.
         elementoAlternativas.appendChild(botao);
+
     });
 
     // Prepara os botões de ação.
     botaoConfirmar.disabled = true;
     botaoConfirmar.hidden = false;
     botaoProxima.hidden = true;
+
 }
+
 
 // ========================================
 // SELECIONAR UMA ALTERNATIVA
 // ========================================
 
 function selecionarAlternativa(indice) {
+
     // Não permite alterar a resposta depois da confirmação.
     if (perguntaRespondida) {
+
         return;
+
     }
 
     // Guarda o índice da alternativa escolhida.
@@ -204,7 +282,9 @@ function selecionarAlternativa(indice) {
 
     // Remove a seleção anterior.
     botoes.forEach(botao => {
+
         botao.classList.remove("selecionada");
+
     });
 
     // Destaca a alternativa escolhida.
@@ -212,21 +292,28 @@ function selecionarAlternativa(indice) {
 
     // Libera o botão de confirmação.
     botaoConfirmar.disabled = false;
+
 }
+
 
 // ========================================
 // VERIFICAR A RESPOSTA
 // ========================================
 
 function verificarResposta() {
+
     // Impede confirmar sem selecionar uma alternativa.
     if (alternativaSelecionada === null) {
+
         return;
+
     }
 
     // Impede que a mesma pergunta seja contabilizada duas vezes.
     if (perguntaRespondida) {
+
         return;
+
     }
 
     perguntaRespondida = true;
@@ -249,11 +336,14 @@ function verificarResposta() {
 
     // Bloqueia todas as alternativas após a resposta.
     botoes.forEach(botao => {
+
         botao.disabled = true;
+
     });
 
     // Verifica se a alternativa escolhida está correta.
     if (opcaoEscolhida.correta) {
+
         acertos++;
 
         elementoFeedback.textContent =
@@ -262,6 +352,7 @@ function verificarResposta() {
         elementoFeedback.className = "feedback certa";
 
     } else {
+
         erros++;
 
         elementoFeedback.textContent =
@@ -269,6 +360,7 @@ function verificarResposta() {
             questao.opcoes[indiceCorreto].texto;
 
         elementoFeedback.className = "feedback errada";
+
     }
 
     // Destaca visualmente a resposta correta.
@@ -276,7 +368,9 @@ function verificarResposta() {
 
     // Destaca a alternativa escolhida incorretamente, se houver.
     if (!opcaoEscolhida.correta) {
+
         botoes[alternativaSelecionada].classList.add("incorreta");
+
     }
 
     // Atualiza os contadores.
@@ -293,54 +387,75 @@ function verificarResposta() {
 
     // Se houver mais perguntas, mostra o botão para avançar.
     if (indiceAtual < questoes.length - 1) {
+
         botaoProxima.textContent = "Próxima questão";
+
     } else {
+
         botaoProxima.textContent = "Ver resultado final";
+
     }
 
     botaoProxima.hidden = false;
+
 }
+
 
 // ========================================
 // ATUALIZAR OS CONTADORES
 // ========================================
 
 function atualizarContadores() {
+
     elementoAcertos.textContent = acertos;
     elementoErros.textContent = erros;
+
 }
+
 
 // ========================================
 // AVANÇAR PARA A PRÓXIMA PERGUNTA
 // ========================================
 
 function proximaQuestao() {
+
     // Só permite avançar depois de responder.
     if (!perguntaRespondida) {
+
         return;
+
     }
 
     // Verifica se ainda existem perguntas.
     if (indiceAtual < questoes.length - 1) {
+
         indiceAtual++;
 
         mostrarQuestao();
 
     } else {
+
         // Todas as perguntas foram respondidas.
         mostrarResultadoFinal();
+
     }
+
 }
+
 
 // ========================================
 // MOSTRAR O RESULTADO FINAL
 // ========================================
 
 function mostrarResultadoFinal() {
+
     // Calcula o aproveitamento em porcentagem.
     const aproveitamento = Math.round(
         (acertos / questoes.length) * 100
     );
+
+    // Preenche o nome do participante.
+    nomeFinal.textContent = nomeParticipante;
 
     // Preenche os dados do resultado final.
     totalFinal.textContent = questoes.length;
@@ -351,20 +466,25 @@ function mostrarResultadoFinal() {
 
     // Define uma mensagem de acordo com o desempenho.
     if (aproveitamento === 100) {
+
         mensagemFinal.textContent =
             "Excelente! Você acertou todas as questões.";
 
     } else if (aproveitamento >= 70) {
+
         mensagemFinal.textContent =
             "Muito bem! Você demonstrou um bom conhecimento do assunto.";
 
     } else if (aproveitamento >= 50) {
+
         mensagemFinal.textContent =
             "Bom esforço! Revise as questões em que teve dificuldade.";
 
     } else {
+
         mensagemFinal.textContent =
             "Continue estudando! Revise as boas práticas de manipulação de alimentos.";
+
     }
 
     // Oculta o questionário e mostra o resultado.
@@ -377,13 +497,16 @@ function mostrarResultadoFinal() {
     // Atualiza o número da última questão.
     elementoNumeroQuestao.textContent =
         `${questoes.length}/${questoes.length}`;
+
 }
+
 
 // ========================================
 // REINICIAR O QUESTIONÁRIO
 // ========================================
 
 function reiniciarQuestionario() {
+
     // Volta os valores para o início.
     indiceAtual = 0;
     acertos = 0;
@@ -391,13 +514,24 @@ function reiniciarQuestionario() {
     alternativaSelecionada = null;
     perguntaRespondida = false;
 
+    // Mantém o nome do participante.
+    // Não é necessário preencher novamente.
+
     // Exibe novamente a área do questionário.
     resultadoFinal.hidden = true;
     areaQuestionario.hidden = false;
 
+    // Reinicia a barra de progresso.
+    elementoBarraProgresso.style.width = "0%";
+
+    // Atualiza os contadores.
+    atualizarContadores();
+
     // Exibe a primeira pergunta novamente.
     mostrarQuestao();
+
 }
+
 
 // ========================================
 // EVENTOS DOS BOTÕES
@@ -418,8 +552,13 @@ botaoReiniciar.addEventListener(
     reiniciarQuestionario
 );
 
+
 // ========================================
 // INICIAR O QUESTIONÁRIO
 // ========================================
 
+// Carrega as perguntas, mas aguarda a identificação
+// antes de apresentar a primeira questão.
+
 carregarQuestoes();
+

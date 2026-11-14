@@ -1,6 +1,8 @@
 
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,45 +15,95 @@
     <!-- Importa o JavaScript após a leitura do HTML -->
     <script src="script.js" defer></script>
 </head>
+
 <body>
 
     <main class="container">
 
         <header class="cabecalho">
+
             <h1>Boas Práticas de Manipulação de Alimentos</h1>
 
             <p>
                 Responda às questões e teste seus conhecimentos.
             </p>
+
         </header>
 
+        <!-- Identificação do participante -->
+        <section id="identificacao" class="cartao">
+
+            <h2>Identificação do participante</h2>
+
+            <form id="form-identificacao">
+
+                <label for="nome-participante">
+                    Informe seu nome:
+                </label>
+
+                <input
+                    type="text"
+                    id="nome-participante"
+                    placeholder="Digite seu nome completo"
+                    maxlength="80"
+                    autocomplete="name"
+                    required
+                >
+
+                <button type="submit">
+                    Iniciar questionário
+                </button>
+
+            </form>
+
+        </section>
+
         <!-- Painel com os contadores -->
-        <section class="placar" aria-label="Resultado parcial">
+        <section
+            class="placar"
+            aria-label="Resultado parcial"
+            hidden
+        >
 
             <div class="contador">
+
                 <span>Questão</span>
+
                 <strong id="numero-questao">0/0</strong>
+
             </div>
 
             <div class="contador acertos">
+
                 <span>Acertos</span>
+
                 <strong id="contador-acertos">0</strong>
+
             </div>
 
             <div class="contador erros">
+
                 <span>Erros</span>
+
                 <strong id="contador-erros">0</strong>
+
             </div>
 
         </section>
 
         <!-- Barra de progresso -->
-        <div class="progresso">
+        <div class="progresso" hidden>
+
             <div id="barra-progresso"></div>
+
         </div>
 
         <!-- Área principal do questionário -->
-        <section id="area-questionario" class="cartao">
+        <section
+            id="area-questionario"
+            class="cartao"
+            hidden
+        >
 
             <h2 id="enunciado">Carregando questões...</h2>
 
@@ -86,9 +138,16 @@
 
             <h2>Questionário concluído!</h2>
 
+            <!-- Nome do participante -->
+            <p class="identificacao-final">
+                Participante:
+                <strong id="nome-final"></strong>
+            </p>
+
             <p id="mensagem-final"></p>
 
             <div class="resultado-detalhes">
+
                 <p>
                     Total de questões:
                     <strong id="total-final">0</strong>
@@ -108,6 +167,7 @@
                     Aproveitamento:
                     <strong id="aproveitamento-final">0%</strong>
                 </p>
+
             </div>
 
             <button id="botao-reiniciar">
@@ -120,10 +180,18 @@
         <p id="mensagem-erro" class="mensagem-erro" hidden></p>
 
         <footer>
-            <p>Este questionário faz parte de uma atividade extensionista do curso de Bacharelado em Engenharia de Software da UNINTER.</p>
-            <p>Responsável: Alex Luiz Lorenz    RU:5130783</p>
+
+            <p>
+                Este questionário faz parte de uma atividade extensionista
+                do curso de Bacharelado em Engenharia de Software da UNINTER.
+            </p>
+
+            <p>Responsável: Alex Luiz Lorenz RU:5130783</p>
+
             <p>E-mail para contato: alex7lorenz@gmail.com</p>
+
             <p>© 2026 – Atividade acadêmica extensionista.</p>
+
         </footer>
 
     </main>
